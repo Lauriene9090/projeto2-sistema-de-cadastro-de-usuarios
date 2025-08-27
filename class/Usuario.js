@@ -1,35 +1,42 @@
 class Usuario {
-    #ativo
-    constructor(nome, idade, email, ativo) {
-        this.nome = nome
-        this.idade = idade
-        this.email = email
-        this.#ativo = ativo
+    static totalUsuarios = 0
+    #ativo = false
+  
+    constructor(nome, idade, email) {
+      this.nome = nome
+      this.idade = idade
+      this.email = email
+      Usuario.totalUsuarios++
     }
-
+  
     get ativo() {
-        return this.#ativo
+      return this.#ativo
     }
-
-    set ativo(ativo) {
-        return this.#ativo = ativo
+  
+    set ativo(valor) {
+      if (valor === true) {
+        this.#ativo = true
+      } else if (valor === false) {
+        this.#ativo = false
+      }
     }
-
+  
     get boasVindas() {
-        return `Bem vindo ${this.nome}`
+      return `Bem-vindo, ${this.nome}!`
     }
-
+  
     mostrarDados() {
-        console.log(this.nome, this.idade, this.email, this.#ativo)
+      console.log(this.boasVindas)
+      console.log(`Nome: ${this.nome}`)
+      console.log(`Idade: ${this.idade}`)
+      console.log(`Email: ${this.email}`)
+      console.log(`Ativo: ${this.ativo}`)
     }
-
-    static totalUsuario = 0
-
-    static contarUsuario() {
-        return this.contarUsuario
-
+  
+    static contarUsuarios() {
+      console.log(`Total de usuários criados: ${Usuario.totalUsuarios}`)
     }
-
-}
-
-module.exports = Usuario
+  }
+  
+  module.exports = Usuario
+  
